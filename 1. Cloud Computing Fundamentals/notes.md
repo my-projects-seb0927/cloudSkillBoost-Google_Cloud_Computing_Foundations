@@ -96,36 +96,36 @@ To view the project zone setting
 ``gcloud config get-value compute/zone``  
 
 ##### Finding project information
-**Viewing the project id**
+Viewing the project id
 ``gcloud config get-value project``
 
 ##### Setting environment variables
-**Creating an environment variable to store your Project ID**
+Creating an environment variable to store your Project ID
 ``export PROJECT_ID=$(gcloud config get-value project)``  
-**Creating an environment variable to store your Zone**
+Creating an environment variable to store your Zone
 ``export ZONE=$(gcloud config get-value compute/zone)``  
 
 ##### Creating a virtual machine with the gcloud tool
-**Creating a VM**
+Creating a VM
 ``gcloud compute instances create gcelab2 --machine-type e2-medium --zone $ZONE``
 > ``Created [https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-04-326fae68bc3d/zones/us-east1-c/instances/gcelab2].
 NAME     ZONE           MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP   STATUS
 gcelab2       e2-medium               10.128.0.2   34.67.152.90  RUNNING``
 
 ##### Exploring gcloud commands
-**For getting help**
+For getting help
 ``gcloud -h``
 ``gcloud --help``
 ``gcloud help``  
-**Viewing the list of configurations in my environment**
+Viewing the list of configurations in my environment
 ``gcloud config list``  
-**To see all properties and their settings**
+To see all properties and their settings
 ``gcloud config list --all``  
-**List your components:**
+List your components:
 ``gcloud components list``  
 
 #### Task 2: Filtering command-line output
-**Listing the compute instance available in the project:**
+Listing the compute instance available in the project:
 ``gcloud compute instances list``
 > ``NAME: gcelab2
 ZONE: 
@@ -135,7 +135,7 @@ INTERNAL_IP: 10.142.0.2
 EXTERNAL_IP: 35.237.43.111
 STATUS: RUNNING``
 
-**Listing the gcelab2 virtual machine:**
+Listing the gcelab2 virtual machine:
 ``gcloud compute instances list --filter="name=('gcelab2')"``
 > ``NAME: gcelab2
 ZONE: 
