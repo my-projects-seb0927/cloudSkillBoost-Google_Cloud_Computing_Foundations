@@ -87,13 +87,13 @@ project = <project_ID>`
 #### Task 1: Configuring your environment
 ##### Understanding regions and zones
 **How to set a region**
-``gcloud config set compute/region ``
+``gcloud config set compute/region ``  
 **To view the project region setting**
-``gcloud config get-value compute/region``
+``gcloud config get-value compute/region``  
 **How to set a zone**
-``gcloud config set compute/zone ``
+``gcloud config set compute/zone ``  
 **To view the project zone setting**
-``gcloud config get-value compute/zone``
+``gcloud config get-value compute/zone``  
 
 ##### Finding project information
 **Viewing the project id**
@@ -101,9 +101,9 @@ project = <project_ID>`
 
 ##### Setting environment variables
 **Creating an environment variable to store your Project ID**
-``export PROJECT_ID=$(gcloud config get-value project)``
+``export PROJECT_ID=$(gcloud config get-value project)``  
 **Creating an environment variable to store your Zone**
-``export ZONE=$(gcloud config get-value compute/zone)``
+``export ZONE=$(gcloud config get-value compute/zone)``  
 
 ##### Creating a virtual machine with the gcloud tool
 **Creating a VM**
@@ -116,13 +116,13 @@ gcelab2       e2-medium               10.128.0.2   34.67.152.90  RUNNING``
 **For getting help**
 ``gcloud -h``
 ``gcloud --help``
-``gcloud help``
+``gcloud help``  
 **Viewing the list of configurations in my environment**
-``gcloud config list``
+``gcloud config list``  
 **To see all properties and their settings**
-``gcloud config list --all``
+``gcloud config list --all``  
 **List your components:**
-``gcloud components list``
+``gcloud components list``  
 
 #### Task 2: Filtering command-line output
 **Listing the compute instance available in the project:**
