@@ -86,13 +86,13 @@ project = <project_ID>`
 
 #### Task 1: Configuring your environment
 ##### Understanding regions and zones
-**How to set a region**
+How to set a region
 ``gcloud config set compute/region ``  
-**To view the project region setting**
+To view the project region setting
 ``gcloud config get-value compute/region``  
-**How to set a zone**
+How to set a zone
 ``gcloud config set compute/zone ``  
-**To view the project zone setting**
+To view the project zone setting
 ``gcloud config get-value compute/zone``  
 
 ##### Finding project information
