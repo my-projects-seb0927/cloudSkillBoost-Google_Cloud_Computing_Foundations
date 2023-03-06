@@ -248,16 +248,66 @@ The default web page should open
 `gcloud compute ssh gcelab2 --zone`
 
 ### 4. Configuring Elastic Apps with Autoscaling
+With Compute Engine you can choose the most appropriate machine properties for your instances, like the number of virtual CPUs and the amount of memory. You can use a set of predefined machine types or create your own custom machine types. 
+To do this, Compute Engine has a feature called autoscaling, where VMs can be added to or subtracted from an application based on load metrics. The other part of making that work is balancing the incoming traffic among the VMs. Google’s Virtual Private Cloud (VPC) supports several different kinds of load balancing.
 
 ### 5. Exploring PaaS with App Engine
+App Engine builds highly scalable applications on a fully managed, serverless platform. it's ideal if time-to-market is valuable and **you need to focus on writing code** without touching a server, cluster or infrastructure.
+It offers:
+- Interfaces with development tools (Languages, Libraries, Frameworks)
+- Full range of built-in services (NoSQL datastores, Memcache, Health checks, etc.)
+- Software development kits (SDKs)
+
+There are two types of App Engine environments: Standard and Flexible.
+#### Standard environment
+- Persistent storage with queries, sorting and transactions.
+- Automatic scaling and load balancing.
+- Scheduled tasks for triggering events at specified times or regular intervals.
+- Asynchronous task queues for performing work outside the scope of a request.
+
+You only have two requirements: Use a specified version and the app must conform to sandbox constraints that are dependent on runtime.
+
+#### Flexible environment
+- Instances are health-checked.
+- Critical, backward-compatible updates are automatically applied to the underlying OS.
+- VM instances are automatically located by geographical region according to the settings in the project.
+- VM instances are restarted on a weekly basis.
+
+Supports many features like: Logging, Traffic splittin, Versioning, Memcache, etc.
 
 ### 6. Lab App Engine: Qwik Start - Python
 
 ### 7. Event Driven Programs with Cloud Functions
+Integrated cloud functions handle applications events. Ex: When a picture is uploaded, it needs to convert format, convert thumbnail size, store new files. It allows your code to respond to events:
+- Lightweight, event-bases, asynchronous compute solution.
+- Allows to create small, single-purpose functions that respond to cloud events without managing a server or runtime environment
+- Billed to the nearest 100 ms, and only while code is running.
 
-### 8. Lab Cloud Function: Qwik Start - Command Linje
+### 8. Lab Cloud Function: Qwik Start - Command Line
 
-### 9. Containerizing and Orchestrating Apps with GKE
+### 9. Containerizing and Orchestrating Apps with GKE (Google Kubernets Engine)
+#### Containers group your code and its dependencies
+- An invisible box arount your code and its dependencies.
+- Has limited access to its own partition of the file system and hardware.
+- Only require a few system calls.
+- Only needs an OS kernel that supports containers.
+- It scales like PaaS, but gives flexibility as IaaS
+
+You can scale by duplicating single containers, or scale application with multiple containers.
+
+#### Kubernetes
+It's a container orchestration tool to simplify the management of containerized environments. Can be installed on a group of servers or run as a hosted service in Google Cloud. It helps to:
+- Install the system on local servers in the cloud.
+- Manage container networking and data storage.
+- Deploy rollouts and rollbacks.
+- Minotar and manage container and host health.
+
+> A VM imitates a computer. A container imitates a OS
+> "GKE is a powerful cluster manager and orchestration system for running Docker containers in Google"
+
+By the way. Kubernetes is Open Source, the service given from Googke is GKE (Google Kubernetes Engine).
+
+
 
 ### 10. Lab: Kubernetes Engine: Qwik Start
 
@@ -291,3 +341,4 @@ The default web page should open
 
 ``
 > `` ``
+
