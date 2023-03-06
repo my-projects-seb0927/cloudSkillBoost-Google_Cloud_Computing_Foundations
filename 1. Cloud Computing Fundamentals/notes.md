@@ -276,6 +276,37 @@ You only have two requirements: Use a specified version and the app must conform
 Supports many features like: Logging, Traffic splittin, Versioning, Memcache, etc.
 
 ### 6. Lab App Engine: Qwik Start - Python
+#### Task 1. Enable Google App Engine Admin API
+The App Engine Admin API enables developers to provision and manage their App Engine Applications.
+1. In the left Navigation menu, click APIs & Services > Library.
+2- Type "App Engine Admin API" in the search box.
+3- Click the App Engine Admin API card.
+4. Click Enable.
+
+#### Task 2. Download the Hello World app
+This is an example of how to deploy an app to Google cloud:
+1. Enter the following commant to copy the Hello World sampe app repository to your Google Cloud instance:
+``git clone https://github.com/GoogleCloudPlatform/python-docs-samples.git``
+2. Go to the directory:
+`cd python-docs-samples/appengine/standard_python3/hello_world`
+
+#### Task 3. Test the application
+Test the application using the Google Cloud development server (dev_appserver.py), which is included with the preinstalled App Engine SDK.
+1. From within your helloworld directory where the app's [app.yaml](https://cloud.google.com/appengine/docs/standard/python/config/appref?hl=es-419) configuration file is located, start the Google Cloud development server with the following command:
+`dev_appserver.py app.yaml`
+2. View the results by clicking the Web preview (web preview icon) > Preview on port 8080. You are going to see a text saying "Hello World!"
+
+#### Task 4. Make a change
+You can leave the development server running while you develop your application. The development server watches for changes in your source files and reloads them if necessary.
+
+#### Task 5. Deploy your app
+1. To deploy your app to App Engine, run the following command from within the root directory of your application where the app.yaml file is located:
+`gcloud app deploy`
+
+#### Task 6. View your application
+- Enter the next command for watching the link app:
+`gcloud app browse`
+
 
 ### 7. Event Driven Programs with Cloud Functions
 Integrated cloud functions handle applications events. Ex: When a picture is uploaded, it needs to convert format, convert thumbnail size, store new files. It allows your code to respond to events:
@@ -341,4 +372,3 @@ By the way. Kubernetes is Open Source, the service given from Googke is GKE (Goo
 
 ``
 > `` ``
-
