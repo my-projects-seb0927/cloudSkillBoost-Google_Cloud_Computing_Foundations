@@ -198,7 +198,6 @@ The Cloud console includes a tool called the Google APIs Explorer that shows wha
 ### 1. Compute Options in the Cloud
 (Insert picture 4 here)
 
-
 ### 2. Exploring IaaS with Compute Engine
 - There are no upfront investments.
 - Thousands of virtual CPUs can run on a system that's designed to be fast and offer consistent performance.
@@ -209,7 +208,44 @@ The Cloud console includes a tool called the Google APIs Explorer that shows wha
 - Can build and run images of other OS and flexibly reconfigure virtual machines.
 
 ### 3. Lab: Creating a Virtual Machine
-- 
+#### Task 1: Create a new instance from the Cloud Console
+1. In the Cloud Console, on the Navigation menu (Navigation menu icon), click Compute Engine > VM Instances.
+This may take a minute to initialize for the first time.
+2. To create a new instance, click **CREATE INSTANCE**.
+3. There are many parameters you can configure when creating a **new instance**. Use the following for this lab:
+
+|Field|Value|Additional Information|
+|-----|-----|----------------------|
+|**Name**|**gcelab**|Name for the VM instance|
+|**Region**|`<filled in at lab start>`|For more information about regions, see the Compute Engine guide, Regions and Zones.|
+|**Zone**|`<filled in at lab start>`|Note: Remember the zone that you selected: you'll need it later. For more information about zones, see the Compute Engine guide, Regions and Zones.|
+|**Series**|**E2**|Name of the series|
+|**Machine Type**|**2 vCPU**|This is an (e2-medium), 2-CPU, 4GB RAM instance. Several machine types are available, ranging from micro instance types to 32-core/208GB RAM instance types. For more information, see the Compute Engine guide, About machine families. **Note:** A new project has a default resource quota, which may limit the number of CPU cores. You can request more when you work on projects outside this lab.|
+|**Boot Disk**|**New 10 GB balanced persistent disk OS Image: Debian GNU/Linux 11 (bullseye)**|Several images are available, including Debian, Ubuntu, CoreOS, and premium images such as Red Hat Enterprise Linux and Windows Server. For more information, see Operating System documentation.|
+|**Firewall**|**Allow HTTP traffic**|Select this option in order to access a web server that you'll install later. **Note:** This will automatically create a firewall rule to allow HTTP traffic on port 80.|
+
+4. Click **Create**
+It should take about a minute for the machine to be created. After that, the new virtual machine is listed on the **VM Instances** page.
+5. To use **SSH** to connect to the virtual machine, in the row for your machine, click SSH.
+This launches an SSH client directly from your browser.
+
+#### Task 2: Install an NGINX web server
+1. Update the OS:
+`sudo apt-get update`
+2. Install NGINX:
+`sudo apt-get install -y nginx`
+3 Confirm that NGINX is running:
+` ps auwx | grep nginx`
+4. To see the web page, return to the Cloud Console and click the **External IP** link in the row for your machine, or add the **External IP** value to http://EXTERNAL_IP/ in a new browser window or tab.
+The default web page should open
+
+#### Task 3: Create a new instance with gcloud
+1. In the Cloud Shell, use `gcloud` to create a new virtual machine instance from the command line:
+`gcloud compute instances create gcelab2 --machine-type e2-medium --zone `
+2. To see all the defaults, run:
+` gcloud compute instances create --help`
+3. You can also use SSH to connect to your instance via gcloud. Make sure to add your zone, or omit the --zone flag if you've set the option globally:
+`gcloud compute ssh gcelab2 --zone`
 
 ### 4. Configuring Elastic Apps with Autoscaling
 
