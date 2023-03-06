@@ -148,9 +148,94 @@ STATUS: RUNNING``
 P.D: Basically, you can use the `--filter` tag for filtering any data :)
 
 #### Task 3: Connecting to your VM instance
-`gcloud compute` makes connecting to your instances easy. The `gcloud compute ssh` command provides a wrapper around SSH, which takes care of authentication and the mapping of instance names to IP addresses.
+`gcloud compute` makes connecting to your instances easy. The `gcloud compute ssh` command provides a wrapper around SSH, which takes care of authentication and the mapping of instance names to IP addresses.  
+Connecting to my VM with SSH:
+`gcloud compute ssh gcelab2 --zone $ZONE`
+> ``WARNING: The public SSH key file for gcloud does not exist.
+WARNING: The private SSH key file for gcloud does not exist.
+WARNING: You do not have an SSH key for gcloud.
+WARNING: [/usr/bin/ssh-keygen] will be executed to generate a key.
+This tool needs to create the directory
+[/home/gcpstaging306_student/.ssh] before being able to generate SSH Keys.
+Do you want to continue? (Y/n)``
+``Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase)``
 
-***
+At this moment you are inside a VM, so you can make anything you'd like to do:  
+Installing `nginx` web server on a virtual machine
+`sudo apt install -y nginx`
+
+#### Task 4: Updating the firewall
+List the firewalls rules for the project:
+``gcloud compute firewall-rules list``
+Trying to access the `nginx` service running on the gcelab2 virtual machine, by adding a tag to the virtual machine
+``gcloud compute instances add-tags gcelab2 --tags http-server,https-server``
+Update the firewall rule to allow:
+``gcloud compute firewall-rules create default-allow-http --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:80 --source-ranges=0.0.0.0/0 --target-tags=http-server``
+Listing the firewall rules for the project:
+``Update the firewall rule to allow:``
+Verifying communication is possible for http to the virtual machine:
+``Verify communication is possible for http to the virtual machine:``
+
+#### Task 5: Viewing the system logs
+Viewing the available logs on the system: 
+``gcloud logging logs list``
+Viewing the logs that relate to compute resources:
+``gcloud logging logs list --filter="compute"``
+Reading the logs related to the resource type of `gce_instance`:
+``gcloud logging read "resource.type=gce_instance" --limit 5``
+
+### 7. Google Cloud APIs
+Application developers structure the software they write in a clean, well-defined interface that abstracts away needless detail, and then they document that interface. Those are APIs (Applicction Programming Interfaces). 
+
+The services that make up Google Cloud offer APIs so that code you write can control them. The Cloud console includes a tool called the Google APIs Explorer that shows what APIs are available, and in what versions.
+
+### 8. The Cloud Console Mobile App
+The Cloud console includes a tool called the Google APIs Explorer that shows what APIs are available, and in what versions.
+
+## Module 3: Use Google Cloud to build your apps
+
+### 1. Compute Options in the Cloud
+(Insert picture 4 here)
+
+
+### 2. Exploring IaaS with Compute Engine
+- There are no upfront investments.
+- Thousands of virtual CPUs can run on a system that's designed to be fast and offer consistent performance.
+- Each VM contains the power and functionality of a full-fledged operating system.
+- Run any computing workload such as web-server hosting, application hosting, and/or application backends.
+- They can be created via the Google Cloud Console.
+- Can run Linux and Windows Server images or any customized versions of these images.
+- Can build and run images of other OS and flexibly reconfigure virtual machines.
+
+### 3. Lab: Creating a Virtual Machine
+- 
+
+### 4. Configuring Elastic Apps with Autoscaling
+
+### 5. Exploring PaaS with App Engine
+
+### 6. Lab App Engine: Qwik Start - Python
+
+### 7. Event Driven Programs with Cloud Functions
+
+### 8. Lab Cloud Function: Qwik Start - Command Linje
+
+### 9. Containerizing and Orchestrating Apps with GKE
+
+### 10. Lab: Kubernetes Engine: Qwik Start
+
+### 11. Managed serverless computing with Cloud Run
+
+
+
+
+````
+````
+````
+````
+````
+
 ````
 ****
 ````
