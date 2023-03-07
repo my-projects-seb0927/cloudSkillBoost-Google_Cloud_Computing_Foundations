@@ -110,18 +110,36 @@ P.D You can remove files from your bucket using `gsutil rm`.
 - **Database:** It's a collection of information organized sot hat it can easily be accessed and managed. We have apps that are able to write data in and read data out of databases.
 Relational databases are the most common. 
 
-### 
+### 6. Exploring Cloud SQL
+Cloud SQL offers fully managed relational databases, including **MySQL, PostgreSQL, and SQL Server as a service**. It’s designed to hand off mundane, but necessary and often time-consuming, tasks to Google.
 
-### 
+#### Advantages
+- No software installation.
+- Supports automatic replication scenarios.
+- Supports managed backups.
+- Includes a network firewall.
 
-### 
+### 7. Lab: Cloud SQL for MySQL: Qwik Start
 
-### 
+#### Task 1. Create a Cloud SQL instance
+1. From the Navigation menu (Navigation menu icon) click on SQL.
+2. Click **Create Instance**.
+3. Select your preferences.
+4. Clik **Create Instance**.
 
-### 
+#### Task 2. Connect to your instance using the mysql client in Cloud Shell
+1. At the Cloud Shell prompt, connect to your Cloud SQL instance by running the following:
+``gcloud sql connect myinstance --user=root`
+2. Enter your root password
+You'll see the `mysql` prompt.
 
-### 
+#### Task 3. Create a database and upload data
+Basically here you are inside the MySQL manager, this means that you can create tables, insert data, make queries, etc.
 
-### 
+### 8. Cloud Spanner as a managed service
 
-### 
+### 9. NoSQL managed services options
+
+### 10. Firestore, a NoSQL document store
+
+### 11. Bigtable as a NoSQL option
