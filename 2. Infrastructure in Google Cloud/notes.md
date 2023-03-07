@@ -70,8 +70,45 @@ The order listed goes from the most expensive to the cheapest one. All of them i
 
 ### 4. Lab: Cloud Storage: Qwik Start - CLI/SDK
 
+#### Create a bucket
+1. In the Cloud Console, go to **Naviagtion menu > Cloud Storage > Buckets**. Click **CREATE BUCKET**
+2. **Name your bucket:** Enter a unique name for your bucket.
+3. Select your preferred configuration for your bucket.
 
-### SQL managed services
+#### Task 1. Upload an object into your bucket
+You can use the `gsutil cp` command for uploading a file to your bucket:
+`gsutil cp ada.jpg gs://YOUR-BUCKET-NAME`
+
+#### Task 2. Download an object from your bucket
+Use the `gsutil cp` command to download the image from your bucket:
+``gsutil cp -r gs://YOUR-BUCKET-NAME/ada.jpg .`
+
+#### Task 3. Copy an object to a folder in the bucket
+Use the `gsutil cp` command to create a folder called `image-folder` and copy the image (ada.jpg) into it:
+`gsutil cp gs://YOUR-BUCKET-NAME/ada.jpg gs://YOUR-BUCKET-NAME/image-folder/`
+
+#### Task 4. List contents of a bucket or folder
+Use the `gsutil ls` command to list the contents of the bucket:
+``gsutil ls gs://YOUR-BUCKET-NAME`
+
+#### Task 5. List details for an object
+Use the `-l` flag to get some details:
+`gsutil ls -l gs://YOUR-BUCKET-NAME/ada.jpg`
+
+#### Task 6. Make your object publicly accessible
+Use the `gsutil acl ch` command to grant all users read permission for the object stored in your bucket:
+`gsutil acl ch -u AllUsers:R gs://YOUR-BUCKET-NAME/ada.jpg`
+
+#### Task 7. Remove public access
+Use the `gsutil acl ch` command in the enxt way:
+`gsutil acl ch -d AllUsers gs://YOUR-BUCKET-NAME/ada.jpg`
+
+P.D You can remove files from your bucket using `gsutil rm`.
+
+
+### 5. SQL managed services
+- **Database:** It's a collection of information organized sot hat it can easily be accessed and managed. We have apps that are able to write data in and read data out of databases.
+Relational databases are the most common. 
 
 ### 
 
