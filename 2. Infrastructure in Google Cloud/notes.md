@@ -43,10 +43,35 @@ Structured data comes in two types: transactional workloads and analytical workl
   - **BigQuery,  Bigtable**
 
 ### 3. Unstructured Storage using Cloud Storage
+Cloud Storage is a fully managed scalable service that has a wide variety of uses. Cloud Storage’s primary use is whenever **binary large-object storage** (also known as a **“BLOB”**) is needed.
+
+#### What is Object Storage?
+Object storage is a computer data storage architecture that manages data as “objects” and not as a file and folder hierarchy (file storage), or as chunks of a disk (block storage). These objects are stored in a packaged format that contains the binary form of the actual data itself, relevant associated metadata (such as date created, author, resource type, and permissions), and a globally unique identifier.
+These unique keys are in the form of URLs, which means object storage interacts well with web technologies. 
+
+#### Cloud Storage classes
+- **Standard Storage: ** For frequently accessed data (Hot data).
+- **Nearline Storage: ** For storing infrequently accessed data (Once per month).
+- **Coldline Storage: ** For reading or modifying data (Once every 90 days).
+- **Archive Storage: ** For data archiving, online backup, and dusaster reivery (Once every year)
+
+The order listed goes from the most expensive to the cheapest one. All of them include:
+- Unlimited storage.
+- Worldwide accesibility and locations.
+- Low latency and high durability.
+- Uniform experience.
+- Geo-redundancy.
+
+#### Cloud Storage Objects
+- They are organized into buckets.
+- They are inmutable, so that means that when you edit an object, you are creating a new version of it.
+- Administrators can either allow each new version to completely overwrite the older one or keep track of each change made to a particular object by enabling “versioning” within a bucket.
+- Cloud Storage offers lifecycle management policies for your objects (Delete after *x* days).
 
 ### 4. Lab: Cloud Storage: Qwik Start - CLI/SDK
 
-### 
+
+### SQL managed services
 
 ### 
 
