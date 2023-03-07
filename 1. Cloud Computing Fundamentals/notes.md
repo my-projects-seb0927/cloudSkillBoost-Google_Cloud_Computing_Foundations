@@ -315,6 +315,73 @@ Integrated cloud functions handle applications events. Ex: When a picture is upl
 - Billed to the nearest 100 ms, and only while code is running.
 
 ### 8. Lab Cloud Function: Qwik Start - Command Line
+#### Overview
+Cloud Functions is a serverless execution environment for building and connecting cloud services. With Cloud Functions you write simple, single-purpose functions that are attached to events emitted from your cloud infrastructure and services. Your Cloud Function is triggered when an event being watched is fired. Your code executes in a fully managed environment. There is no need to provision any infrastructure or worry about managing any servers.
+
+#### Use cases
+|Use Case|Description|
+|--------|-----------|
+|Data Processing / ETL|Listen and respond to Cloud Storage events such as when a file is created, changed, or removed. Process images, perform video transcoding, validate and transform data, and invoke any service on the Internet from your Cloud Function.|
+|Webhooks|Via a simple HTTP trigger, respond to events originating from 3rd party systems like GitHub, Slack, Stripe, or from anywhere that can send HTTP requests.|
+|Lightweight APIs|Compose applications from lightweight, loosely coupled bits of logic that are quick to build and that scale instantly. Your functions can be event-driven or invoked directly over HTTP/S.|
+|Mobile Backend|se Google's mobile platform for app developers, Firebase, and write your mobile backend in Cloud Functions. Listen and respond to events from Firebase Analytics, Realtime Database, Authentication, and Storage.|
+|IoT|Imagine tens or hundreds of thousands of devices streaming data into Cloud Pub/Sub, thereby launching Cloud Functions to process, transform and store data. Cloud Functions lets you do things in a way that's completely serverless.|
+
+#### Task 1. Create a function
+First, you're going to create a simple function named helloWorld. This function writes a message to the Cloud Functions logs. It is triggered by cloud function events and accepts a callback function used to signal completion of the function.
+
+For this lab the cloud function event is a cloud pub/sub topic event. A pub/sub is a messaging service where the senders of messages are decoupled from the receivers of messages. When a message is sent or posted, a subscription is required for a receiver to be alerted and receive the message. To learn more about pub/subs, in Cloud Pub/Sub Guides, see [Google Cloud Pub/Sub: A Google-Scale Messaging Service](https://cloud.google.com/pubsub/architecture).
+
+To learn more about the event parameter and the callback parameter, in Cloud Functions Documentation, see [Background Functions](https://cloud.google.com/functions/docs/writing/background).
+
+To create a cloud function:
+1. In the Cloud Shell command line, create a directory for the function code:
+`mkdir gcf_hello_world`
+2. Inside the `gcf_hello_world` directory, create and open `index.js` copying the next text and saving it:
+```
+/**
+* Background Cloud Function to be triggered by Pub/Sub.
+* This function is exported by index.js, and executed when
+* the trigger topic receives a message.
+*
+* @param {object} data The event payload.
+* @param {object} context The event metadata.
+*/
+exports.helloWorld = (data, context) => {
+const pubSubMessage = data;
+const name = pubSubMessage.data
+    ? Buffer.from(pubSubMessage.data, 'base64').toString() : "Hello World";
+console.log(`My Cloud Function: ${name}`);
+};
+```
+
+#### Task 2. Create a cloud storage bucket
+Use the following command to create a new cloud storage bucket for your function:
+``gsutil mb -p [PROJECT_ID] gs://[BUCKET_NAME]``
+
+#### Task 3. Deploy your function
+When deploying a new function, you must specify ``--trigger-topic``, ``--trigger-bucket``, or ``--trigger-http``. When deploying an update to an existing function, the function keeps the existing trigger unless otherwise specified.
+
+For this lab, you'll set the ``--trigger-topic`` as ``hello_world``.
+
+1. Deploy the function to a pub/sub topic named **hello_world**
+```
+gcloud functions deploy helloWorld \
+  --stage-bucket [BUCKET_NAME] \
+  --trigger-topic hello_world \
+  --runtime nodejs8
+```
+2. Verify the status of the function:
+``gcloud functions describe helloWorld``
+
+#### Task 4. Test the function
+Test that the function writes a message to the cloud log after detecting an event:
+``DATA=$(printf 'Hello World!'|base64) && gcloud functions call helloWorld --data '{"data":"'$DATA'"}'``
+You can view the logs to confirm that there are log messages with that execution ID.
+
+#### Task 5. View logs
+Check the logs to see your messages in the log history:
+``gcloud functions logs read helloWorld``
 
 ### 9. Containerizing and Orchestrating Apps with GKE (Google Kubernets Engine)
 #### Containers group your code and its dependencies
@@ -338,9 +405,8 @@ It's a container orchestration tool to simplify the management of containerized 
 
 By the way. Kubernetes is Open Source, the service given from Googke is GKE (Google Kubernetes Engine).
 
-
-
 ### 10. Lab: Kubernetes Engine: Qwik Start
+
 
 ### 11. Managed serverless computing with Cloud Run
 
