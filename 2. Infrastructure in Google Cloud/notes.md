@@ -36,11 +36,11 @@ It often includes names, addresses, contact numbers, dates, and billing info. An
 #### Choose the right option
 Structured data comes in two types: transactional workloads and analytical workloads.
 - Transactional workloads stem from Online Transaction Processing systems, which are used when fast data inserts and updates are required to build row-based records
-- - Require standardized queries that affect only a few records.
-- - **Cloud SQL, Cloud Spanner**
+  - Require standardized queries that affect only a few records.
+  - **Cloud SQL, Cloud Spanner**
 - Analytical workloads stem from Online Analytical Processing systems, which are used when entire datasets need to be read.
-- - Complex queries.
-- - **BigQuery,  Bigtable**
+  - Complex queries.
+  - **BigQuery,  Bigtable**
 
 ### 3. Unstructured Storage using Cloud Storage
 
