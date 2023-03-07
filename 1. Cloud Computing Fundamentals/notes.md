@@ -1,4 +1,3 @@
-
 # Cloud Computing Fundamentals
 ## Course Introduction
 Insert courseObjectives.png here
@@ -404,37 +403,71 @@ It's a container orchestration tool to simplify the management of containerized 
 > "GKE is a powerful cluster manager and orchestration system for running Docker containers in Google"
 
 By the way. Kubernetes is Open Source, the service given from Googke is GKE (Google Kubernetes Engine).
+[Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine?hl=es-419) (GKE) provides a managed environment for deploying, managing, and scaling your containerized applications using Google infrastructure. The Kubernetes Engine environment consists of multiple machines (specifically Compute Engine instances) grouped to form a [container cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture?hl=es-419).
 
 ### 10. Lab: Kubernetes Engine: Qwik Start
+#### Kubernetes on Google Cloud
+When you run a GKE cluster, you also gain the benefit of advanced cluster management features that Google Cloud provides. These include:
+- Load balancing for Compute Engine instances
+- Node pools to designate subsets of nodes within a - cluster for additional flexibility
+- Automatic scaling of your cluster's node instance count
+- Automatic upgrades for your cluster's node software
+- Node auto-repair to maintain node health and availability
+- Logging and Monitoring with Cloud Monitoring for visibility into your cluster
 
+Now that you have a basic understanding of Kubernetes, you will learn how to deploy a containerized application with GKE in less than 30 minutes. Follow the steps below to set up your lab environment.
+
+##### Task 1. Set a default compute zone
+1. Set the default compute region:¨
+`gcloud config set compute/region assigned_at_lab_start`
+2. Set the default compute zone,
+`gcloud config set compute/zone assigned_at_lab_start`
+
+##### Task 2. Create a GKE cluster
+A [cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture?hl=es-419) consists of at least one cluster master machine and multiple worker machines called nodes. Nodes are [Compute Engine virtual machine (VM)](https://cloud.google.com/compute/docs/instances?hl=es-419) instances that run the Kubernetes processes necessary to make them part of the cluster.
+
+##### Task 3. Get authentication credentials for the cluster
+1. Authenticate with the cluster:
+`gcloud container clusters get-credentials lab-cluster `
+
+##### Task 4. Deploy an application to the cluster
+You can now deploy a containerized application to the cluster. For this lab, We'll run `hello-app` in your cluster.
+
+GKE uses Kubernetes objects to create and manage your cluster's resources. Kubernetes provides the [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) object for deploying stateless applications like web servers. [Service](https://kubernetes.io/docs/concepts/services-networking/service/) objects define rules and load balancing for accessing your application from the internet.
+
+1. To create a new Deployment `hello-server` from the `hello-app` container image, run the following [kubectl create](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#create) command:
+`kubectl create deployment hello-server --image=gcr.io/google-samples/hello-app:1.0`
+This Kubernetes command creates a Deployment object that represents `hello-server`. In this case, `--image` specifies a container image to deploy. The command pulls the example image from a Container Registry bucket. `gcr.io/google-samples/hello-app:1.0` indicates the specific image version to pull. If a version is not specified, the latest version is used.
+
+2. To create a **Kubernetes Service**, which is a Kubernetes resource that lets you expose your application to external traffic, run the following kubectl expose command:
+`kubectl expose deployment hello-server --type=LoadBalancer --port 8080`^
+- `-port` specifies the port that the container exposes.
+- `type="LoadBalancer"` creates a Compute Engine load balancer for your container.
+
+3. To inspect the `hello-server` Service, run:
+`kubetcl get service`.
+4. To view the application from your web browser, open a new tab and enter the following address:
+5. `http://[EXTERNAL-IP]:8080`
+
+##### Task 5. Deleting the cluster
+To **delete** the cluster, run the following command:
+`gcloud container clusters delete lab-cluster `
 
 ### 11. Managed serverless computing with Cloud Run
+- Cloud Run is a managed compute platform that lets you run stateless container by using web requests or Pub/Sub events. 
+- It's serverless, it removes all infrastructure management tasks so you can focus on developing applications.
+- It's built on Knative-
+- Can automatically scale up and down from zero almost instantaneously.
+- It handles HTTPS for you (With SSL aspects).
 
+#### Workflow:
+1. Write your code
+2. Build and package
+3. Deploy to Cloud Run for handling requests.
 
+OR
 
+1. Write your code
+2. Deploy to Cloud Run (Levaing the Container task to Google Cloud)
 
-````
-````
-````
-````
-````
-
-````
-****
-````
-****
-````
-****
-````
-#### 
-#### 
-#### 
-#### 
-
-###
-###
-###
-###
-
-``
-> `` ``
+P.D: You can create the container image by yourself.
