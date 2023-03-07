@@ -50,10 +50,10 @@ Object storage is a computer data storage architecture that manages data as “o
 These unique keys are in the form of URLs, which means object storage interacts well with web technologies. 
 
 #### Cloud Storage classes
-- **Standard Storage: ** For frequently accessed data (Hot data).
-- **Nearline Storage: ** For storing infrequently accessed data (Once per month).
-- **Coldline Storage: ** For reading or modifying data (Once every 90 days).
-- **Archive Storage: ** For data archiving, online backup, and dusaster reivery (Once every year)
+- **Standard Storage:** For frequently accessed data (Hot data).
+- **Nearline Storage:** For storing infrequently accessed data (Once per month).
+- **Coldline Storage:** For reading or modifying data (Once every 90 days).
+- **Archive Storage:** For data archiving, online backup, and dusaster reivery (Once every year)
 
 The order listed goes from the most expensive to the cheapest one. All of them include:
 - Unlimited storage.
