@@ -108,12 +108,55 @@ And stop the command in 10 seconds
 ```
 
 ## 4. Apigee Edge
+It's a different service from Cloud endpoinst since it has the next characteristics:
+- Specific focus on business problems, like rating limiting, quotas, and analytics.
+- Many Apigee Edge users provide a software service to other compaines.
+- Backend services for Apigee Edge **don't need** to be in Google Cloud.
+
+It helps to peel off its services individually
 
 
 ## 5. Pub/Sub
+The Google Cloud Pub/Sub service allows applications to exchange messages reliably, quickly, and asynchronously. To accomplish this, a data producer publishes messages to a Cloud Pub/Sub topic. A subscriber client then creates a subscription to that topic and consumes messages from the subscription. Cloud Pub/Sub persists messages that could not be delivered reliably for up to seven days.
 
+- **Data ingestion:** It's when stream, large data are received. It comes from thousand events that are happening at the same time (Ex. IoT). 
+
+The name of Pub/Sub is short for Publisher/Suscriber
+- It Publish messages to suscribers.
+- Handle distributed message-oriented architectures at scale.
+
+### Architecture
+![Pub/Sub architecture](media/1.png)
+
+### Topics
+Topics is a named resource to which messages are sent by publishers. Topics and suscribers are decoupled (It works like a radio antena).
 
 ## 6, Lab: Pub/Sub: Qwik Start - Python
+###
+
+
+###
+
+
+###
+
+
+###
+
+
+###
+
+
+###
+
+
+### Task 7. View messages
+
+
+###
+
+
+
 
 
 
