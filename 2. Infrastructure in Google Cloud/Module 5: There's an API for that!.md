@@ -126,7 +126,7 @@ The name of Pub/Sub is short for Publisher/Suscriber
 - Handle distributed message-oriented architectures at scale.
 
 ### Architecture
-![Pub/Sub architecture](media/1.png)
+![Pub/Sub architecture](media/2.png)
 
 ### Topics
 Topics is a named resource to which messages are sent by publishers. Topics and suscribers are decoupled (It works like a radio antena).
