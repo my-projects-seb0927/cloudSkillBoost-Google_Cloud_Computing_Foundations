@@ -138,6 +138,7 @@ Basically here you are inside the MySQL manager, this means that you can create 
 
 ### 8. Cloud Spanner as a managed service
 
+
 ### 9. NoSQL managed services options
 
 ### 10. Firestore, a NoSQL document store
