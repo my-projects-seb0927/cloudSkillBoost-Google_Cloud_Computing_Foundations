@@ -1,6 +1,6 @@
 # Cloud Computing Fundamentals
 ## Course Introduction
-Insert courseObjectives.png here
+![courseIntroduction](media/1.png)
 
 ## Module 1: So, what's the cloud anyway?
 ### 1.1. Cloud Computing
@@ -26,7 +26,7 @@ It binds code to libraries that provide access to the infrastructure application
 SaaS applications are not installed on your local computer; they run in the cloud as a service and are consumed directly over the internet by end users
 
 ### 1.4 Google Cloud architecture
-(insert picture here)
+![Google Architecture](media/2.png)
 Google offers: Computing services, Storage services, Big data and ML product line.
 
 ## Module 2: Start with a solid platform
@@ -36,7 +36,7 @@ I can interact with the Google Cloud console by: Cloud Console, Cloud SKD and Cl
 
 ### 2. Understanding projects
 The Cloud console is used for accesing and using resources. Resources are organized in projects
-(Insert picture)
+![Projects organization](media/3.png)
 Projects help to separate entities, hold resources for every Project, have different owners and users and Projects are billed separately.
 Projects have:
 - **ID** (unique)
@@ -195,7 +195,7 @@ The Cloud console includes a tool called the Google APIs Explorer that shows wha
 ## Module 3: Use Google Cloud to build your apps
 
 ### 1. Compute Options in the Cloud
-(Insert picture 4 here)
+![Compute options in the cloud](media/4.png)
 
 ### 2. Exploring IaaS with Compute Engine
 - There are no upfront investments.
