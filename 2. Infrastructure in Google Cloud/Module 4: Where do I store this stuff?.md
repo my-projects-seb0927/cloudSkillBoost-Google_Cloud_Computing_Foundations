@@ -1,6 +1,6 @@
 # Cloud Computing Fundamentals
 ## Course Introduction
-Insert courseObjectives.png here
+![objectives](media/1.png)
 
 ## Module 4: Where do I store this stuff?
 ### 1. Storage options available in Google Cloud
@@ -137,10 +137,41 @@ You'll see the `mysql` prompt.
 Basically here you are inside the MySQL manager, this means that you can create tables, insert data, make queries, etc.
 
 ### 8. Cloud Spanner as a managed service
+Cloud Spanner is a fully managed relational database service that scales horizontally, is strongly consistent, and speaks SQL.
 
+Cloud Spanner is especially suited for applications that require:
+- An SQL relational database management system with joins and secondary indexes.
+- Built-in high availability.
+- Strong global consistency.
+- Database sizes that exceed 2 TB.
+- And high numbers of input/output operations per second, such as tens of thousands of reads/writes per second. 
+
+#### How does it work?
+Data is automatically and instantly copied across regions, which is called synchronous replication. As a result, queries always return consistent and ordered answers regardless of the region.
 
 ### 9. NoSQL managed services options
+- Firestore
+- Bigtable
 
 ### 10. Firestore, a NoSQL document store
+Firestore is a flexible, horizontally scalable, NoSQL cloud database for mobile, web, and server development.
+With Firestore, incoming data is stored in a document structure, and these documents are then organized into collections.
+
+Firestore’s NoSQL queries can then be used to retrieve individual, specific documents or to retrieve all the documents in a collection that match your query parameters.
 
 ### 11. Bigtable as a NoSQL option
+Bigtable is Google's NoSQL big data database service. It's the same database that powers many core Google services, including Search, Analytics
+
+Great choice for:
+- Operational applications.
+- Analytical applications.
+
+#### Why should you choose it?
+- 1TB of semi-structured or structured data.
+- Data is fast with high throughput.
+- NoSQL data.
+- Work with big data.
+- Run machine learning algorithms on the data.
+
+
+Using APIs, data can be read from and written to Bigtable through a data service layer like Managed VMs, the HBase REST Server, or a Java Server using the HBase client.
