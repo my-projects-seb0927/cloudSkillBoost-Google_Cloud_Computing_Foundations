@@ -132,25 +132,62 @@ The name of Pub/Sub is short for Publisher/Suscriber
 Topics is a named resource to which messages are sent by publishers. Topics and suscribers are decoupled (It works like a radio antena).
 
 ## 6, Lab: Pub/Sub: Qwik Start - Python
-###
+### Task 1. Create a virtual environment
+Python virtual environments are used to isolate package installation from the system.
+1. Install the virtualenv environment:
+`sudo apt-get install -y virtualenv`
+
+2. Build the virutal environment:
+`python3 -m venv venv`
+
+3. Activate the virtual environment:
+`source venv/bin/activate`
+
+### Task 2. Install the client library
+1. Install the client library:
+`pip install --upgrade google-cloud-pubsub`
+
+2. Get the sample code and go to the directory of it:
+`git clone https://github.com/googleapis/python-pubsub.git`
+
+### Task 3. Pub/Sub - the Basics
+Google Cloud Pub/Sub is an asynchronous global messaging service. There are three terms in Pub/Sub that appear often: topics, publishing, and subscribing.
+
+A topic is a shared string that allows applications to connect with one another through a common thread.
+
+Publishers push (or publish) a message to a Cloud Pub/Sub topic. Subscribers will then make a subscription to that thread, where they will either pull messages from the topic or configure webhooks for push subscriptions. Every subscriber must acknowledge each message within a configurable window of time.
+
+### Task 4. Create a topic
+1. In Cloud Shell, your Project ID should automatically be stored in the environment variable GOOGLE_CLOUD_PROJECT:
+`echo $GOOGLE_CLOUD_PROJECT`
+`publisher.py` is a script that demonstrates how to perform basic operations on topics with the Cloud Pub/Sub API.
+
+2. Run the publisher script to create Pub/Sub Topic:
+`python publisher.py $GOOGLE_CLOUD_PROJECT create MyTopic`
+
+3. This command returns a list of all Pub/Sub topics in a given project:
+`python publisher.py $GOOGLE_CLOUD_PROJECT list`
+
+You can also see your topic naviating to **Navigation menu > Pub/Sub > Topics**
 
 
-###
+### Task 5. Create a subscription
+1. Create a Pub/Sub subscription for topic with `subscriber.py` script:
+`python subscriber.py $GOOGLE_CLOUD_PROJECT create MyTopic MySub`
 
+2. This command returns a list of subscribers in given project:
+`python subscriber.py $GOOGLE_CLOUD_PROJECT list-in-project`
 
-###
-
-
-###
-
-
-###
-
-
-###
+### Task 6. Publish messages
+1. Publish the message "Hello" to `MyTopic`:
+`gcloud pubsub topics publish MyTopic --message "Hello"`
 
 
 ### Task 7. View messages
+Use MySub to pull the message from MyTopic:
+```
+python subscriber.py $GOOGLE_CLOUD_PROJECT receive MySub
+```
 
 
 ###
