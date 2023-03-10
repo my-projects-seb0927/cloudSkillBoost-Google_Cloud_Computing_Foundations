@@ -131,7 +131,7 @@ The name of Pub/Sub is short for Publisher/Suscriber
 ### Topics
 Topics is a named resource to which messages are sent by publishers. Topics and suscribers are decoupled (It works like a radio antena).
 
-## 6, Lab: Pub/Sub: Qwik Start - Python
+## 6. Lab: Pub/Sub: Qwik Start - Python
 ### Task 1. Create a virtual environment
 Python virtual environments are used to isolate package installation from the system.
 1. Install the virtualenv environment:
