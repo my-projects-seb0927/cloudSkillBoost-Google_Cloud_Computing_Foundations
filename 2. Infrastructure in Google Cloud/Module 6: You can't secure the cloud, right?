@@ -1,0 +1,75 @@
+# Module 6: You can't secure the cloud, right?
+
+## 1. Security in the cloud
+### Infrastructure security design
+- Operational security
+- Internet communication
+- Storage services
+- Service deployment
+- Hardware infrastructure
+
+### Hardware infrastructure layer
+#### Hardware design and provenance
+Both the server boards and the networking equipment in Google data centers are custom designed by Google. Google also designs custom chips, including a hardware security chip that's currently being deployed on both servers and peripherals.
+
+#### Secure boot stack
+Google server machines use various technologies to ensure that they are booting the correct software stack, such as cryptographic signatures over the BIOS, bootloader, kernel, and base operating system image.
+
+#### Premises security 
+Google designs and builds its own data centers, which incorporate multiple layers of physical security protections.
+
+Google also hosts some servers in third-party data centers, where we ensure that there are Google-controlled physical security measures on top of the security layers provided by the data center operator.
+
+### Deployment layer
+#### Encryption of inter-service operator
+Google’s infrastructure provides cryptographic privacy and integrity for remote procedure call (“RPC”) data on the network.
+
+#### User identity
+Google’s central identity service, which usually manifests to end users as the Google login page, goes beyond asking for a simple username and password.
+
+### Storage services layer
+#### Encryption at rest
+Most applications at Google access physical storage (in other words, “file storage”) indirectly by using storage services, and encryption (using centrally managed keys) is applied at the layer of these storage services. 
+
+### Internet communication layer
+#### Google Front End (GFE)
+Google services that want to make themselves available on the internet register themselves with an infrastructure service called the Google Front End, which ensures that all TLS connections are ended using a public-private key pair and an X.509 certificate from a Certified Authority (CA).
+
+#### Denial of Service ("DoS") protection
+The sheer scale of its infrastructure enables Google to simply absorb many DoS attacks. Google also has multi-tier, multi-layer DoS protections that further reduce the risk of any DoS impact on a service running behind a GFE.
+
+### Google operational security layer
+#### Intrustion detection
+Rules and machine intelligence give Google’s operational security teams warnings of possible incidents.
+
+#### Reducing insider risk
+Google aggressively limits and actively monitors the activities of employees who have been granted administrative access to the infrastructure.
+
+#### Employee U2F use
+To guard against phishing attacks against Google employees, employee accounts require use of U2F-compatible security keys.
+
+#### Software development practices
+Google employs central source control and requires two-party review of new code. Google also provides its developers with libraries that prevent them from introducing certain classes of security bugs. Google also runs a Vulnerability Rewards Program where we pay anyone who can discover and inform bugs in the infrastructure. 
+
+> (Note from the author: I'm just shocked with the last sencence **:o**)
+> (Note from the author after visiting the website: Really? Just 30.000? I bet an exploit would cost more in the dark web ewe).
+
+##  2. The shared security model
+
+
+## 3. Encryption options
+
+
+## 4. Authentication and authorization with IAM
+
+
+## 5. Lab: User Authentication: Identity-Aware Proxy
+
+
+## 6. IAM authorization best practies
+
+
+## 7. Lab: IAM: Qwuik Start
+
+
+### What is an API?
