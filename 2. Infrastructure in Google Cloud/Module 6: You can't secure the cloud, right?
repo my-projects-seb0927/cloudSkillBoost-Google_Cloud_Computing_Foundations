@@ -55,12 +55,30 @@ Google employs central source control and requires two-party review of new code.
 > (Note from the author after visiting the website: Really? Just 30.000? I bet an exploit would cost more in the dark web ewe).
 
 ##  2. The shared security model
-
+Security responsibilities are shared between the customer and Google Cloud.
+Google provides tools like the resource hierarchy and IAM to help them define and implement policies, but ultimately this part is their responsibility. Data access is usually the customer’s responsibility. They control who or what has access to their data. Google Cloud provides tools that help them control this access, such as Identity and Access Management, but they must be properly configured to protect data. 
 
 ## 3. Encryption options
+![Google Cloud Encryption tools](media/3.png)
+It also exists a fourth option: To encrypt data locally before you store it the cloud (Client-side encryption)
+![How encryption works](media/4.png)
 
+### Customer-managed encryption keys (CMEK)
+- Manage keys in a cloud-hosted solution.
+- Encrypt and decrypt via API.
+- Automated and at-will key rotation.
+- Symmtric and asymmetric key suport.
+
+### Customer-supplied encryption keys (CSEK)
+- Customer-supplied encryption keys give users more control over their keys, but with greater management complexity.
+- With CSEK, users use their own AES 256-bit encryption keys.
+- Users are responsible for storing the keys and providing them as part of Google Cloud API calls.
+- Google Cloud will use the provided key to encrypt the data before saving it.  
 
 ## 4. Authentication and authorization with IAM
+With IAM, administrators can apply policies that define who can do what on which resources.
+00:28
+The “who” part of an IAM policy can be a Google Account, a Google group, a service account, or Cloud Identity domain. The “can do what” part of an IAM policy is defined by a role
 
 
 ## 5. Lab: User Authentication: Identity-Aware Proxy
