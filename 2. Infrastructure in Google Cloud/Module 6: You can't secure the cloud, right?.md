@@ -249,4 +249,15 @@ Here basically you create a bucket and upload a file.
 The "Viewer" user should see the bucket, since he has allowed read-only acctions
 
 ### Remove project access
+1. Go to **Navigation menu > IAM & Admin > IAM** and the pencil icon inline and to the right of the respective user.
+2. Remove Project Viewer access for the user by clicking the trashcan icon next to the role name. Then click **SAVE**.
 
+### Verify that the user has lost access
+> You just are veryfing what you did in the last section ewe.
+
+### Add Storage permissions
+1. Copy the username from the user from the **Lab Connection** panel.
+2. Go to **Navigation menu > IAM & Admin > IAM**.
+3. Click **+GRANT ACCESS** button and paste the username into the **New principals** field.
+4. In the **Select a role** field, select **Cloud Storage > Storage Object Viewer** from the drop-down menu.
+5. **SAVE**.
