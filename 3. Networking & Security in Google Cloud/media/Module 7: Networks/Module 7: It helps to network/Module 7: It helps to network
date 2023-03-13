@@ -1,10 +1,17 @@
 # Module 7: it helps to network
 
 ## 1. Security in the cloud
+In Google Cloud, a "network" is an isolated global resource holding network configuration. Instances are deployed in regional subnetworks, however the policy (firewall, routing, and so on), and access through VPN, are configured at the global network level.
 
+### How Google networking works
+Here's an example network diagram for an application that bridges an organization's physical data center
+![Diagram example](media/1.png)  
+In this example, the subnetworks are configured so that the frontend subnet cannot talk directly to the data center or colocation facility.
 
 ## 2. Virtual Private Clouds (VPCs)
+A Virtual Private Cloud, or VPC, is a secure, individual, private cloud-computing model hosted within a public cloud.
 
+On a VPC, customers can run code, store data, host websites, and do anything else they could do in an ordinary private cloud, but this private cloud is hosted remotely by a public cloud provider. This means that VPCs combine the scalability and convenience of public cloud computing with the data isolation of private cloud computing. VPC networks connect Google Cloud resources to each other and to the internet. 
 
 ## 3. The basics of public and internal IP addresses
 
