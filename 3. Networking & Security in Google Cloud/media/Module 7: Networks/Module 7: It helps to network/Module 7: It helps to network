@@ -11,12 +11,55 @@ In this example, the subnetworks are configured so that the frontend subnet cann
 ## 2. Virtual Private Clouds (VPCs)
 A Virtual Private Cloud, or VPC, is a secure, individual, private cloud-computing model hosted within a public cloud.
 
-On a VPC, customers can run code, store data, host websites, and do anything else they could do in an ordinary private cloud, but this private cloud is hosted remotely by a public cloud provider. This means that VPCs combine the scalability and convenience of public cloud computing with the data isolation of private cloud computing. VPC networks connect Google Cloud resources to each other and to the internet. 
+On a VPC, customers can run code, store data, host websites, and do anything else they could do in an ordinary private cloud, but this private cloud is hosted remotely by a public cloud provider. This means that VPCs combine the scalability and convenience of public cloud computing with the data isolation of private cloud computing. 
+
+### Virtual Private Cloud Option
+- VPC networks connect Google Cloud resources to each other and to the internet. 
+- - Segmenting networks.
+- - Using firewall rules to restrict access to instances.
+- - Creating static routes to forward traffic to specific destinations.
+- Google VPC networks are global and can have subnets in any Google Cloud region worldwide.
+
+### VPC subnets connect resources in different zones
+![VPC subnets](media/2.png)  
+
+### Auto and custom networks
+![Different type of networks](media/3.png)  
+> You can't switch a network from custom mode to auto mode.
+
 
 ## 3. The basics of public and internal IP addresses
 
+### A VPC is made up of subnets
+![VPC Structure](media/4.png)  
+- A Virtual Private Cloud (VPC) is composed of subnetworks, or subnets, and each subnet must be configured with a private IP CIDR (*Classless Inter-domain Routing*) address. 
+- The CIDR range will determine what internal IP addresses will be used by virtual machines in the subnet. 
+- **Internal IP addresses are only used for communication within the VPC** and cannot be routed to the internet. 
+- Each octet in an IP address is represented by 8 binary bits. So a typical IPV4 address is 32-bits long. The number at the end of the range determines how many bits will be static or frozen. This number determines how many IP addresses are available with a CIDR address.
+- The CIDR range determines how many IP addresses are available. A /16 range will provide 65,536 available IP addresses. Every time you add “1” to the last number, the number of available IP addresses is cut in half.
+
+### The basics of public and Internal IP addresses.
+#### Public (external) IP addresses
+- Can be assigned from pool or reserved.
+- Billed when not atttached to a running VM.
+- VM doesn't know the external IP; it's mapped to the internal IP.
+
+#### Private (internal) IP addresses
+- Alloccated from subnet range to VMs by DHCP.
+- DHCP lease is renewed every 24 hours.
+- VM name and IP is registered with network-scoped DNS service.
+
 
 ## 4. The Google Cloud network
+
+### Google Cloud's primary networking products
+- **Google Cloud VPC:** Comprehensive networking capabilites and infraestructure.
+- - You can connect your google cloud resources to a VPC and isolate them.
+- **Cloud Load Balancing:** High performance, scalable load balancing
+- **Cloud CDN:** Low-latency, low-cost content delivery.
+- **Cloud Interconnect:** Fast, high availibility interconnect.
+- **Cloud DNS:** Highly available global DNS network.
+
 
 
 ## 5. Routes and firewalls rules in the cloud
