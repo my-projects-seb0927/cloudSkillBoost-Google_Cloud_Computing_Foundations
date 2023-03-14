@@ -57,21 +57,43 @@ On a VPC, customers can run code, store data, host websites, and do anything els
 - - You can connect your google cloud resources to a VPC and isolate them.
 - **Cloud Load Balancing:** High performance, scalable load balancing
 - **Cloud CDN:** Low-latency, low-cost content delivery.
+- - *Content Delivery Network*.
+- - Storing files close to the user.
 - **Cloud Interconnect:** Fast, high availibility interconnect.
+- - Connecting your own infrastructure to Google's global cable.
 - **Cloud DNS:** Highly available global DNS network.
-
+- - *Domain Name System*.
+- - It translates requests for domain names into IP addresses.
 
 
 ## 5. Routes and firewalls rules in the cloud
+### Routing table
+- VPCs have routing tables.
+- - **Routing table:** Data table of router locations and their IP addresses stored in the memory of a router or a network host.
+- VPCs routing tables are built-in.
+- They are used to forward travvig from one instance to another within the same networs, subnetworks, etcc
 
+### Firewall
+- It's provided by Google Cloud.
+- It restricts access to instances through both incoming and outgoing traffic.
+- Rules can be defined through metadata tags (Ex: Tag on "WEB" tag) on Compute Engine instances.
 
 ## 6. Multiple VPC networks
 
+### VPC peering
+- It allows projects to communicate (exhange traffic).
+- It's decentralized or distributed approach to multi-project networking, because each VPC network can remain under the control of separate administrator groups and mantain its own global firewall and routing tables.
+
+### Shared VPC
+- You are using here IAM for controling who and what in one project can interact with a VPC.
+- It allows organizations to connect resources from multiple projects to a common VPC network.
+- Resources to communicate with each other securely and efficiently by using internal IPs from that network.
+- **Name:** Shared VPC network.
 
 ## 7. Lab: Multiple VPC newtorks
 
 
-## 8. LabL VPC Networks - Controlling Access
+## 8. Lab VPC Networks - Controlling Access
 
 
 ## 9. Buidling hybrid clouds
