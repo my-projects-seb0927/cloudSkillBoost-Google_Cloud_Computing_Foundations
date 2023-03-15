@@ -91,7 +91,82 @@ On a VPC, customers can run code, store data, host websites, and do anything els
 - **Name:** Shared VPC network.
 
 ## 7. Lab: Multiple VPC newtorks
+Here we create the next infrastructure
+![Infrastructure diagram](media/5.png)
 
+### Task 1. Create custom mode VPC networks with firewall rules
+#### Create the managementnet network
+1. In the Cloud Console, navigate to **Navigation menu (Navigation menu icon) > VPC network > VPC networks.**
+2. Click **Create VPC Network**.
+3. Set the **Name** to ´managementnet´.
+4. For **Subnet creation mode**, click **Custom**.
+5. You can set the following values: Name, Region and IPv4 range.
+6. Click **Done**.
+7. Click **EQUIVALENT COMMAND LINE**.
+> These commands illustrate that networks and subnets can be created using the Cloud Shell command line. You will create the privatenet network using these commands with similar parameters.  
+8. Click **Close**.
+9. Click **Create**.
+
+#### Create the privatenet network
+Go to Cloud Shell command line.
+1. Run to create the **privatenet** network:
+`gcloud compute networks create privatenet --subnet-mode=custom`
+2. Run the command to create the **privatesubnet-us** subnet:
+`gcloud compute networks subnets create privatesubnet-us --network=privatenet --region=us-east1 --range=172.16.0.0/24`
+> We need subnets because, remember, custom mode networks doesn't have subnet automatically created as auto mode networks.
+3. Run the command to create the **privatesubnet-eu** subnet:
+`gcloud compute networks subnets create privatesubnet-eu --network=privatenet --region=europe-west1 --range=172.20.0.0/20`
+4. You can list the available VPC networks:
+`gcloud compute networks list`
+5. You can list the available VPC subnets (sorted bt VPC network):
+`gcloud compute networks subnets list --sort-by=NETWORK`
+6. Go to **Navigation menu > VPC network > VPC networks**.
+7. You see that the same networks and subnets are listed in the Cloud Console.
+
+#### Create the firewall rules for managementnet
+Create firewall rules to allow **SSH**, **ICMP**, and **RDP** ingress traffic to VM instances on the **managementnet** network.
+1. Go to **Navigation menu (Navigation menu icon) > VPC network > Firewall**.
+2. Click **+ Create Firewall Rule**.
+3. You can see the following values: Name, Network, Targets, Source filter, Source IPv4 ranges, Protocols and ports.
+4. Click **EQUIVALENT COMMAND LINE**.
+> These commands illustrate that firewall rules can also be created using the Cloud Shell command line. You will create the **privatenet**'s firewall rules using these commands with similar parameters.
+5. Click **Close**.
+6. Click **Create**.
+
+#### Create the firewall rules for privatenet
+Open Cloud Shell
+1. Run the command to create the **privatenet-allow-icmp-ssh-rdp** firewall rule:
+`gcloud compute firewall-rules create privatenet-allow-icmp-ssh-rdp --direction=INGRESS --priority=1000 --network=privatenet --action=ALLOW --rules=icmp,tcp:22,tcp:3389 --source-ranges=0.0.0.0/0`
+2. Run the command to list all the firewall rules (sorted by VPC network):
+`gcloud compute firewall-rules list --sort-by=NETWORK`
+
+### Task 2. Create VM instances
+#### Create the managementnet-us-vm instance
+1. In the Cloud Console, navigate to **Navigation menu > Compute Engine > VM instances**.
+2. Click **Create instance**.
+3. You can set the next values: Name, Region, Zone, Series, Machine type, etc.
+4. From **Advanced options**, click **Networking, Disks, Security, Management, Sole-tenancy** dropdown.
+5. Click **Networking**.
+6. For **Network interfaces**, click the dropdown to edit.
+7. You can set the following values: Network and Subnetwork.
+8. Click **Done**.
+9. You can see the code viewing **EQUIVALENT CODE**.
+10 Click **Create**.
+
+#### Create the privatenet-us-vm instance
+Opne the Cloud Shell
+1. Run the command to create the **privatenet-us-vm** instance:
+`gcloud compute instances create privatenet-us-vm --zone="" --machine-type=e2-micro --subnet=privatesubnet-us`
+
+### Task 3. Explore the connectivity between VM instances
+#### Ping the external IP addresses
+
+
+
+### 
+
+
+### 
 
 ## 8. Lab VPC Networks - Controlling Access
 
