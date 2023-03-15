@@ -160,7 +160,26 @@ Opne the Cloud Shell
 
 ### Task 3. Explore the connectivity between VM instances
 #### Ping the external IP addresses
+This is for determining if you can reach the instances from the public internet.
+1. In the Cloud Console, navigate to **Navigation menu > Compute Engine > VM instances**.
+2. Note the external IP addresses for **mynet-eu-vm, managementnet-us-vm, and privatenet-us-vm**.
+3. For **mynet-us-vm**, click SSH to launch a terminal and connect.
+4. To test connectivity to **mynet-eu-vm**'s external IP, run the following command, replacing **mynet-eu-vm**'s external IP:
+`ping -c 3 <Enter mynet-eu-vm's external IP here>`
+5. To test connectivity to **managementnet-us-vm**'s external IP, run the following command, replacing **managementnet-us-vm**'s external IP:
+6. To test connectivity to **privatenet-us-vm**'s external IP, run the following command, replacing **privatenet-us-vm**'s external IP:
 
+#### Pint he internal IP addresses
+This is for determining if you can reach the instances from within a VPC network.
+1. In the Cloud Console, navigate to **Navigation menu > Compute Engine > VM instances**.
+2. Note the internal IP addresses for **mynet-eu-vm, managementnet-us-vm, and privatenet-us-vm**.
+3. Return to the **SSH** terminal from **mynet-us-vm**.
+4. To test connectivity to **mynet-eu-vm**'s internal IP, run the following command, replacing **mynet-eu-vm**'s internal IP:
+`ping -c 3 <Enter mynet-eu-vm's internal IP here>`
+
+VPC networks are by default isolated private networking domains. However, no internal IP address communication is allowed between networks, unless you set up mechanisms such as VPC peering or VPN.
+
+#### Task 4. Create a VM instance with multiple network interfaces
 
 
 ### 
