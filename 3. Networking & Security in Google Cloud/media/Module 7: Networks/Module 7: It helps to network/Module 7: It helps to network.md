@@ -166,6 +166,7 @@ This is for determining if you can reach the instances from the public internet.
 3. For **mynet-us-vm**, click SSH to launch a terminal and connect.
 4. To test connectivity to **mynet-eu-vm**'s external IP, run the following command, replacing **mynet-eu-vm**'s external IP:
 `ping -c 3 <Enter mynet-eu-vm's external IP here>`
+`#The packages are received!`
 5. To test connectivity to **managementnet-us-vm**'s external IP, run the following command, replacing **managementnet-us-vm**'s external IP:
 6. To test connectivity to **privatenet-us-vm**'s external IP, run the following command, replacing **privatenet-us-vm**'s external IP:
 
@@ -176,18 +177,105 @@ This is for determining if you can reach the instances from within a VPC network
 3. Return to the **SSH** terminal from **mynet-us-vm**.
 4. To test connectivity to **mynet-eu-vm**'s internal IP, run the following command, replacing **mynet-eu-vm**'s internal IP:
 `ping -c 3 <Enter mynet-eu-vm's internal IP here>`
-
+`#The packages are received!`
+5. To test connectivity to managementnet-us-vm's internal IP, run the following command, replacing managementnet-us-vm's internal IP:  
+`ping -c 3 <Enter managementnet-us-vm's internal IP here>`
+``#The packages are lost. This is because they are in different VPC (Virtual Private Clouds)``
 VPC networks are by default isolated private networking domains. However, no internal IP address communication is allowed between networks, unless you set up mechanisms such as VPC peering or VPN.
 
 #### Task 4. Create a VM instance with multiple network interfaces
+Every instance in a VPC network has a default network interface. You can create additional network interfaces attached to your VMs. Multiple network interfaces enable you to create configurations in which an instance connects directly to several VPC networks (up to 8 interfaces, depending on the instance's type).
 
+##### Create the VM instance with multiple networks interfaces
+Create the **vm-appliance instance**** with network interfaces in **privatesubnet-us**, **managementsubnet-us** and **mynetwork**. The CIDR ranges of these subnets do not overlap, which is a requirement for creating a VM with multiple network interface controllers (NICs).
 
-### 
+1. Go to **Navigation menu > Compute Engine > VM Instances**.
+2. Click **Create instance**.
+3. You can set the following values: Name, Region, Zone, Series and Machine type
+4. **Advanced options > Networking, Disks, Security, Management, Soletenancy**
+5. Click **Networking**, and then **Network Interfaces**.
+6. You can set the following values: Network and Subnetwork.
+7. Click **Done**.
+8. Click **Add network interface**.
+9. *In this part you are adding more network interfaces*
+10. Click **Create**.
 
+##### Explore the network interface details
+###### Cloud console
+1. In the Cloud Console, navigate to **Navigation menu (Navigation menu icon) > Compute Engine > VM instances**.
+2. Click `nic0` within the **Internal IP** address of **vm-appliance** to open the **Network interface details** page.
+3. Verify that `nic0` is attached to **privatesubnet-us**, is assigned an internal IP address within that subnet (172.16.0.0/24), and has applicable firewall rules.
+4. Click `nic0` and select `nic1`.
+5. Verify that `nic1` is attached to **managementsubnet-us**, is assigned an internal IP address within that subnet (10.130.0.0/20), and has applicable firewall rules.
+6. Click `nic1` and select `nic2`.
+7. Verify that `nic2` is attached to **mynetwork**, is assigned an internal IP address within that subnet (10.128.0.0/20), and has applicable firewall rules.
 
-### 
+##### Cloud shell
+1. Go to **Navigation menu > Compute Engine > VM instances**.
+2. For **vm-applicance**, click **SSH** to launch a terminal and connect.
+3. Run the next command for listing the network interfaces within the VM instance:
+`sudo ifconfig`
+
+#### Explore the network interface connectivity
+Demonstrate that the **vm-appliance** instance is connected to **privatesubnet-us**, **managementsubnet-us** and **mynetwork** by pinging VM instances on those subnets.
+
+##### Ping the external IP addresses
+1. In the Cloud Console, navigate to **Navigation menu > Compute Engine > VM instances**
+2. Note the external IP addresses for **mynet-eu-vm, managementnet-us-vm** and **privatenet-us-vm**.
+3. For **mynet-us-vm**, click **SSH** to launch a terminal and connect.
+4. To test connectivity to **mynet-eu-vm**'s external IP, run the following command, replacing **mynet-eu-vm**'s external IP: ``ping -c 3 <Enter mynet-eu-vm's external IP here>``
+5. And you can do the same with the rest of external IP addresses!
+6. To test connectivity to **mynet-eu-vm**'s internal IP, run the following command, replacing **mynet-eu-vm**'s internal IP: `ping -c 3 <Enter mynet-eu-vm's internal IP here>`.  
+    And this doesn't work because there is no connectivity configured for this.
+
 
 ## 8. Lab VPC Networks - Controlling Access
+### Task 1. Create the web servers
+#### Creating blue server
+1. Go to **Navigation menu (Navigation menu icon) > Compute Engine > VM instances**.
+2. Click **Create Instance**.
+3. You can set the following values: Name, Region and Zone.
+4. Click **NETWORKING, DISKS, SECURITY, MANAGEMENT, SOLE-TENANCY**.
+5. Click **Networking**.
+6. For **Network tags**, type **web-server**.
+    > Tags are for identifying which VM instances are subject to certain firewall rules and network routes.
+7. Click **Create**.
+
+#### Creating green server
+1. Go to **Navigation menu (Navigation menu icon) > Compute Engine > VM instances**.
+2. Click **Create Instance**.
+3. You can set the following values: Name, Region and Zone.
+4. Click **Create**.
+
+#### Install nginx and customize the welcome page
+1. Click for blue **SSH** to launch a terminal and connect.
+2. Run the next command: `sudo apt-get install nginx-light -y`
+3. Open the welcome page: `sudo nano /var/www/html/index.nginx-debian.html`
+4. Replace the `<h1>Welcome to nginx!</h1>` line with `<h1>Welcome to the blue server!</h1>`.
+5. For green, run **SSH**, install nginx and edit it in the same way but saying `Welcome to the green server!`
+
+
+### Task 2. Create the firewall rule
+#### Create the tagged firewall rule
+Create a firewall rule that applies to VM instances with the **web-server** network tag.
+1. In the Console, navigate to **Navigation menu > VPC network > Firewall**.
+2. Click **Create Firewall Rule**.
+3. You can set the following values: Name, Network, Targets, Target tags, Source filter, Source IPv4 ranges, Protocols and ports.
+4. Click **Create**.
+
+#### Create a test-vm
+Create a  **test-vm** instance running the next command: `gcloud compute instances create test-vm --machine-type=f1-micro --subnet=default --zone=us-central1-a`
+
+#### Test HTTP connectivity
+From **test-vm** curl the internal and external IP addresses of **blue** and **green.
+1. In the Console, navigate to **Navigation menu > Compute Engine > VM instances**.
+2. Note the internal and external IP addresses of blue and green.
+3. For **test-vm**, click **SSH** to launch a terminal and connect.
+4. To test HTTP connectivity to **blue**'s internal IP, run the following command, replacing **blue**'s internal IP: `curl <Enter blue's internal IP here>`
+5. You can do it for internal and external IPs for every server, but you are going to have a problem with the external IP green server.
+
+
+### Task 3. Explore the Network and Security Admin roles
 
 
 ## 9. Buidling hybrid clouds
